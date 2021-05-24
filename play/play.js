@@ -47,7 +47,6 @@ async function startPlayer() {
   document.head.appendChild(styleEl);
 
   const scriptEl = document.createElement("script");
-  scriptEl.setAttribute("type", "script/javascript");
   scriptEl.setAttribute("src", scriptSRC(version));
   scriptEl.addEventListener("load", function () {
     playVideo(events);
