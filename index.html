@@ -6,10 +6,10 @@
   <title>RRWeb Debug - Play rrweb recordings</title>
 </head>
 <body>
-  <form action="play" method="get">
+  <form action="play/index.html" method="get">
     <label>
-      Paste the url of your gist
-      <input type="text" name='url' placeholder="https://gist.github.com/Juice10/..." />
+      Paste the url of your <strong>raw</strong> gist file
+      <input type="text" name='url' placeholder="https://gist.githubusercontent.com/Juice10/.../raw/.../events.json" />
     </label>
     <label>
       rrweb player version
@@ -17,7 +17,7 @@
         <option>0.7.1</option>
       </select>
     </label>
-    <input type="submit">Play video</input>
+    <button type="submit">Play video</button>
   </form>
 </body>
 </html>
