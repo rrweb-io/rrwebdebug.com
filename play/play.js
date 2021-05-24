@@ -32,8 +32,8 @@ function playVideo(events) {
 
 async function startPlayer() {
   const location = new URL(document.location);
-  const gistURL = location.serachParams.get("url");
-  const version = location.serachParams.get("version");
+  const gistURL = location.searchParams.get("url");
+  const version = location.searchParams.get("version");
   try {
     const eventsRequest = await fetch(gistURL);
     const events = await eventsRequest.json();
