@@ -1,23 +1,38 @@
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RRWeb Debug - Play rrweb recordings</title>
-</head>
-<body>
-  <form action="play/index.html" method="get">
-    <label>
-      Paste the url of your <strong>raw</strong> gist file
-      <input type="text" name='url' placeholder="https://gist.githubusercontent.com/Juice10/.../raw/.../events.json" />
-    </label>
-    <label>
-      rrweb player version
-      <select name="version">
-        <option>0.7.1</option>
-      </select>
-    </label>
-    <button type="submit">Play video</button>
-  </form>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RRWeb Debug - Play rrweb recordings</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <form action="play/index.html" method="get">
+        <label>
+          Paste the url of your <strong>raw</strong> gist file
+          <input
+            form-control
+            form-control-lg
+            type="text"
+            name="url"
+            placeholder="https://gist.githubusercontent.com/Juice10/.../raw/.../events.json"
+          />
+        </label>
+        <label>
+          rrweb player version
+          <select name="version" class="form-control form-control-lg">
+            <option>0.7.1</option>
+          </select>
+        </label>
+        <button class="btn btn-primary" type="submit">Play video</button>
+      </form>
+    </div>
+  </body>
 </html>
