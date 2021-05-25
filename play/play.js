@@ -30,16 +30,40 @@ function playVideo(events) {
   component.addEventListener("finish", () => console.log("finish"));
 }
 
+function getGistId(url) {
+  const match = /gist.github.com\/[^/]+\/(\w+)/.exec(url);
+  if (match.length === 2) {
+    return match[1];
+  }
+  return false;
+}
+
 async function startPlayer() {
   const location = new URL(document.location);
-  const gistURL = location.searchParams.get("url");
+  const url = location.searchParams.get("url");
   const version = location.searchParams.get("version");
   let events;
-  try {
-    const eventsRequest = await fetch(gistURL);
-    events = await eventsRequest.json();
-  } catch (error) {
-    alert(error);
+  const gistId = getGistId(url);
+  if (gistId) {
+    try {
+      const gistApiRequest = await fetch(
+        `https://api.github.com/gists/${gistId}`
+      );
+      const apiResponse = await gistApiRequest.json();
+      const files = Object.values(apiResponse.files);
+      events = JSON.parse(files[0].content);
+    } catch (error) {
+      alert("something went wrong, please check the console");
+      console.error(error);
+    }
+  } else {
+    try {
+      const eventsRequest = await fetch(url);
+      events = await eventsRequest.json();
+    } catch (error) {
+      alert("something went wrong, please check the console");
+      console.error(error);
+    }
   }
 
   const styleEl = document.createElement("link");
