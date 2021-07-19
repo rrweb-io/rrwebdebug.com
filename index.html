@@ -13,27 +13,39 @@
     />
   </head>
   <body>
-    <div class="container">
-      <form action="play/index.html" method="get">
-        <label>
-          URL of your <a href="https://gist.github.com">Gist</a>
-          <input
-            class="form-control form-control-lg"
-            type="url"
-            name="url"
-            placeholder="https://gist.githubusercontent.com/Juice10/.../raw/.../events.json"
-          />
-        </label>
-        <label>
-          rrweb player version
-          <select name="version" class="form-control form-control-lg">
-            <option>0.7.1</option>
-            <option>0.7.2</option>
-            <option selected>0.7.3</option>
-          </select>
-        </label>
-        <button class="btn btn-primary" type="submit">Play video</button>
-      </form>
+    <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+      <div class='row align-items-center g-lg-5 py-5'>
+        <div class="col-lg-7 text-center text-lg-start">
+          <h1 class="display-4 fw-bold lh-1 mb-3">
+            RRWeb Debug
+          </h1>
+          <p class="col-lg-10 fs-4">
+            Play your rrweb recordings in multiple versions of rrweb.
+          </p>
+        </div>
+        <div class='col-md-10 mx-auto col-lg-5'>
+          <form action="play/index.html" method="get">
+            <label>
+              URL of your <a href="https://gist.github.com">Gist</a>
+              <input
+                class="form-control form-control-lg"
+                type="url"
+                name="url"
+                placeholder="https://gist.githubusercontent.com/Juice10/.../raw/.../events.json"
+              />
+            </label>
+            <label>
+              rrweb player version
+              <select name="version" class="form-control form-control-lg">
+                <option>0.7.1</option>
+                <option>0.7.2</option>
+                <option selected>0.7.3</option>
+              </select>
+            </label>
+            <button class="btn btn-primary" type="submit">Play video</button>
+          </form>
+        </div>
+      </div>
     </div>
   </body>
 </html>
