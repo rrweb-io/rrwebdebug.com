@@ -32,10 +32,7 @@ function playVideo(events) {
 
 function getGistId(url) {
   const match = /gist.github.com\/[^/]+\/(\w+)/.exec(url);
-  if (match.length === 2) {
-    return match[1];
-  }
-  return false;
+  return match?.[1] || false;
 }
 
 async function startPlayer() {
