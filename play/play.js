@@ -1,5 +1,5 @@
 function allowedVersion(version) {
-  const allVersions = ["0.7.1"];
+  const allVersions = ["0.7.1", "0.7.2", "0.7.3"];
   return allVersions.includes(version);
 }
 
