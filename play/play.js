@@ -95,7 +95,7 @@ async function startPlayer() {
 
   document.head.appendChild(scriptEl);
   document.querySelector('a.json').setAttribute('href', url);
-  document.querySelector('a.json').innerText(url);
+  document.querySelector('a.json').innerText = url;
 }
 
 document.onload = startPlayer();
