@@ -27,6 +27,7 @@ function playVideo(events) {
     },
   });
   window.$c = component;
+  document.querySelector('.loading').style.display = "none";
   component.addEventListener("finish", () => console.log("finish"));
 }
 
