@@ -36,7 +36,7 @@ function getGistId(url) {
 }
 
 function getJSONBlobId(url) {
-  const match = /https:\/\/jsonblob.com\/(\w+)/.exec(url);
+  const match = /https:\/\/jsonblob.com\/([\w\-]+)/.exec(url);
   return match?.[1] || false;
 }
 
@@ -54,6 +54,8 @@ async function startPlayer() {
       );
       const apiResponse = await gistApiRequest.json();
       const files = Object.values(apiResponse.files);
+      // if js
+      // Function('"use strict";return (' + js.replace(/^\s*(const|let|var)\s\w+\s*=\s*/, '').replace(/;[\s\n]*$/, '') + ')')()
       events = JSON.parse(files[0].content);
     } catch (error) {
       alert("something went wrong, please check the console");
