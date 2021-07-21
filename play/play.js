@@ -14,7 +14,7 @@ function styleHref(version) {
 
 function playVideo(events) {
   const component = new rrwebPlayer({
-    target: document.body,
+    target: document.getElementById("player"),
     data: {
       events,
       skipInactive: true,
@@ -35,12 +35,18 @@ function getGistId(url) {
   return match?.[1] || false;
 }
 
+function getJSONBlobId(url) {
+  const match = /https:\/\/jsonblob.com\/(\w+)/.exec(url);
+  return match?.[1] || false;
+}
+
 async function startPlayer() {
   const location = new URL(document.location);
   const url = location.searchParams.get("url");
   const version = location.searchParams.get("version");
   let events;
   const gistId = getGistId(url);
+  const jsonBlobId = getJSONBlobId(url);
   if (gistId) {
     try {
       const gistApiRequest = await fetch(
@@ -49,6 +55,16 @@ async function startPlayer() {
       const apiResponse = await gistApiRequest.json();
       const files = Object.values(apiResponse.files);
       events = JSON.parse(files[0].content);
+    } catch (error) {
+      alert("something went wrong, please check the console");
+      console.error(error);
+    }
+  } else if (jsonBlobId) {
+    try {
+      const jsonBlobApiRequest = await fetch(
+        `https://jsonblob.com/api/v1/get/${jsonBlobId}`
+      );
+      events = await jsonBlobApiRequest.json();
     } catch (error) {
       alert("something went wrong, please check the console");
       console.error(error);
@@ -75,6 +91,8 @@ async function startPlayer() {
   });
 
   document.head.appendChild(scriptEl);
+  document.querySelector('a.json').setAttribute('href', url);
+  document.querySelector('a.json').innerText(url);
 }
 
 document.onload = startPlayer();
