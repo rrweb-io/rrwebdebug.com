@@ -32,6 +32,17 @@ function playVideo(events) {
   component.addEventListener("finish", () => console.log("finish"));
 }
 
+function showJSON(json) {
+  const container = document.getElementById('jsoneditor')
+
+  const options = {
+    mode: 'view'
+  }
+
+  const editor = new JSONEditor(container, options, json)
+  window.events = events;
+}
+
 function getGistId(url) {
   const match = /gist.github.com\/[^/]+\/(\w+)/.exec(url);
   return match?.[1] || false;
@@ -92,6 +103,7 @@ async function startPlayer() {
   scriptEl.setAttribute("src", scriptSRC(version));
   scriptEl.addEventListener("load", function () {
     playVideo(events);
+    showJSON(events);
   });
 
   document.head.appendChild(scriptEl);
