@@ -44,7 +44,7 @@ function showJSON(json) {
 }
 
 function getGistId(url) {
-  const match = /gist.github.com\/[^/]+\/(\w+)/.exec(url);
+  const match = /gist.github(?:usercontent)?.com\/[^/]+\/(\w+)/.exec(url);
   return match?.[1] || false;
 }
 
