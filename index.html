@@ -14,20 +14,21 @@
   </head>
   <body>
     <div class="container col-xl-10 col-xxl-8 px-4 py-5">
-      <div class='row align-items-center g-lg-5 py-5'>
+      <div class="row align-items-center g-lg-5 py-5">
         <div class="col-lg-7 text-center text-lg-start">
-          <h1 class="display-4 fw-bold lh-1 mb-3">
-            RRWeb Debug
-          </h1>
+          <h1 class="display-4 fw-bold lh-1 mb-3">RRWeb Debug</h1>
           <p class="col-lg-10 fs-4">
-            Play your rrweb recordings in the browser. Great for debugging and sharing your recordings.
+            Play your rrweb recordings in the browser. Great for debugging and
+            sharing your recordings.
           </p>
           <h2>How it works</h2>
           <p class="col-lg-10 fs-4">
-            Upload your rrweb events in JSON format to <a href='https://jsonblob.com/new'>JSONBlob.com</a> or create a Github Gist and paste the link here.
+            Upload your rrweb events in JSON format to
+            <a href="https://jsonblob.com/new">JSONBlob.com</a> or create a
+            Github Gist and paste the link here.
           </p>
         </div>
-        <div class='col-md-10 mx-auto col-lg-5'>
+        <div class="col-md-10 mx-auto col-lg-5">
           <form action="play/index.html" method="get">
             <label>
               URL of your rrweb events.json file
@@ -51,9 +52,22 @@
                 <option value="0.7.8">0.7.8 (rrweb v1.0.6)</option>
                 <option value="0.7.9">0.7.9 (rrweb v1.0.7)</option>
                 <option value="0.7.10">0.7.10 (rrweb v1.0.8)</option>
-                <option selected value="0.7.11">0.7.11 (rrweb v1.0.10)</option>
+                <option value="0.7.11">0.7.11 (rrweb v1.1.0)</option>
+                <option selected value="0.7.13">0.7.13 (rrweb v1.1.2)</option>
               </select>
             </label>
+            <div class="form-check form-switch">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="canvas-switch"
+                name="canvas"
+              />
+              <label class="form-check-label" for="canvas-switch"></label>
+                Canvas playback </label
+              >
+            </div>
             <button class="btn btn-primary" type="submit">Play video</button>
           </form>
         </div>

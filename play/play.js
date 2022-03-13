@@ -1,5 +1,18 @@
 function allowedVersion(version) {
-  const allVersions = ["0.7.1", "0.7.2", "0.7.3", "0.7.4", "0.7.5", "0.7.6", "0.7.7", "0.7.8", "0.7.9", "0.7.10", "0.7.11"];
+  const allVersions = [
+    "0.7.1",
+    "0.7.2",
+    "0.7.3",
+    "0.7.4",
+    "0.7.5",
+    "0.7.6",
+    "0.7.7",
+    "0.7.8",
+    "0.7.9",
+    "0.7.10",
+    "0.7.11",
+    "0.7.13",
+  ];
   return allVersions.includes(version);
 }
 
@@ -12,15 +25,16 @@ function styleHref(version) {
   return `https://cdn.jsdelivr.net/npm/rrweb-player@${version}/dist/style.css`;
 }
 
-function playVideo(events) {
+function playVideo(events, config) {
   const component = new rrwebPlayer({
     target: document.getElementById("player"),
     data: {
-      events, 
+      events,
       skipInactive: true,
       showDebug: true,
       showWarning: true,
       autoPlay: true,
+      UNSAFE_replayCanvas: config.canvas,
       mouseTail: {
         strokeStyle: "yellow",
       },
@@ -28,18 +42,18 @@ function playVideo(events) {
   });
   window.$c = component;
   window.events = events;
-  document.querySelector('.loading').style.display = "none";
+  document.querySelector(".loading").style.display = "none";
   component.addEventListener("finish", () => console.log("finish"));
 }
 
 function showJSON(json) {
-  const container = document.getElementById('jsoneditor')
+  const container = document.getElementById("jsoneditor");
 
   const options = {
-    mode: 'view'
-  }
+    mode: "view",
+  };
 
-  const editor = new JSONEditor(container, options, json)
+  const editor = new JSONEditor(container, options, json);
   window.events = events;
 }
 
@@ -57,6 +71,7 @@ async function startPlayer() {
   const location = new URL(document.location);
   const url = location.searchParams.get("url");
   const version = location.searchParams.get("version");
+  const canvas = Boolean(location.searchParams.get("canvas"));
   let events;
   const gistId = getGistId(url);
   const jsonBlobId = getJSONBlobId(url);
@@ -70,7 +85,7 @@ async function startPlayer() {
       if (files[0].truncated) {
         const eventsRequest = await fetch(files[0].raw_url);
         events = await eventsRequest.json();
-      } else {        
+      } else {
         // if js
         // Function('"use strict";return (' + js.replace(/^\s*(const|let|var)\s\w+\s*=\s*/, '').replace(/;[\s\n]*$/, '') + ')')()
         events = JSON.parse(files[0].content);
@@ -107,13 +122,15 @@ async function startPlayer() {
   const scriptEl = document.createElement("script");
   scriptEl.setAttribute("src", scriptSRC(version));
   scriptEl.addEventListener("load", function () {
-    playVideo(events);
+    playVideo(events, {
+      canvas,
+    });
     showJSON(events);
   });
 
   document.head.appendChild(scriptEl);
-  document.querySelector('a.json').setAttribute('href', url);
-  document.querySelector('a.json').innerText = url;
+  document.querySelector("a.json").setAttribute("href", url);
+  document.querySelector("a.json").innerText = url;
 }
 
 document.onload = startPlayer();
