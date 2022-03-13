@@ -16,7 +16,7 @@ function playVideo(events) {
   const component = new rrwebPlayer({
     target: document.getElementById("player"),
     data: {
-      events,
+      events, 
       skipInactive: true,
       showDebug: true,
       showWarning: true,
@@ -49,7 +49,7 @@ function getGistId(url) {
 }
 
 function getJSONBlobId(url) {
-  const match = /https:\/\/jsonblob.com\/([\w\-]+)/.exec(url);
+  const match = /https?:\/\/jsonblob.com\/([\w\-]+)/.exec(url);
   return match?.[1] || false;
 }
 
