@@ -1,0 +1,11 @@
+{
+  "name": "rrwebdebug.com",
+  "version": "1.0.0",
+  "main": "index.html",
+  "repository": "https://github.com/rrweb-io/rrwebdebug.com.git",
+  "author": "Justin Halsall <Juice10@users.noreply.github.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "2.6.0"
+  }
+}
