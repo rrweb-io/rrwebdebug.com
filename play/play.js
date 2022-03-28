@@ -33,7 +33,7 @@ function playVideo(events, config) {
       skipInactive: true,
       showDebug: true,
       showWarning: true,
-      autoPlay: true,
+      autoPlay: config.autoPlay,
       UNSAFE_replayCanvas: config.canvas,
       mouseTail: {
         strokeStyle: "yellow",
@@ -72,6 +72,7 @@ async function startPlayer() {
   const url = location.searchParams.get("url");
   const version = location.searchParams.get("version");
   const canvas = Boolean(location.searchParams.get("canvas"));
+  const autoPlay = Boolean(location.searchParams.get("play"));
   let events;
   const gistId = getGistId(url);
   const jsonBlobId = getJSONBlobId(url);
@@ -124,6 +125,7 @@ async function startPlayer() {
   scriptEl.addEventListener("load", function () {
     playVideo(events, {
       canvas,
+      autoPlay,
     });
     showJSON(events);
   });
