@@ -1,28 +1,25 @@
+import versionsJson from "./versions.json";
+
 function allowedVersion(version) {
-  const allVersions = [
-    "0.7.1",
-    "0.7.2",
-    "0.7.3",
-    "0.7.4",
-    "0.7.5",
-    "0.7.6",
-    "0.7.7",
-    "0.7.8",
-    "0.7.9",
-    "0.7.10",
-    "0.7.11",
-    "0.7.13",
-    "0.7.14",
-  ];
+  const allVersions = Object.keys(versionsJson);
   return allVersions.includes(version);
 }
 
+function defaultVersion() {
+  const defaultVersion = Object.entries(versionsJson).find(
+    ([version, { default: isDefault }]) => {
+      if (isDefault) return true;
+    }
+  );
+  return defaultVersion?.[0];
+}
+
 function scriptSRC(version) {
-  if (!allowedVersion(version)) return;
+  if (!allowedVersion(version)) version = defaultVersion();
   return `https://cdn.jsdelivr.net/npm/rrweb-player@${version}/dist/index.js`;
 }
 function styleHref(version) {
-  if (!allowedVersion(version)) return;
+  if (!allowedVersion(version)) version = defaultVersion();
   return `https://cdn.jsdelivr.net/npm/rrweb-player@${version}/dist/style.css`;
 }
 
