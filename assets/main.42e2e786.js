@@ -1,0 +1,1 @@
+import{v as s}from"./versions.ad323d23.js";document.getElementById("versions").innerHTML=Object.entries(s).map(([t,e])=>{const{rrwebVersion:n}=e,r="default"in e&&e.default;return`<option value="${t}" ${r?"selected":""} =>${t} (rrweb v${n})</option>`}).join("");
