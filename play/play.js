@@ -12,6 +12,7 @@ function allowedVersion(version) {
     "0.7.10",
     "0.7.11",
     "0.7.13",
+    "0.7.14",
   ];
   return allVersions.includes(version);
 }
