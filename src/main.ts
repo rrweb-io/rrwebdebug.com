@@ -12,3 +12,5 @@ document.getElementById("versions")!.innerHTML = Object.entries(versionsJson)
     } =>${version} (rrweb v${rrwebVersion})</option>`;
   })
   .join("");
+
+console.log('Welcome to rrwebdebug.com!')
