@@ -50,8 +50,14 @@
   "1.0.0-alpha.3": {
     "rrwebVersion": "2.0.0-alpha.3"
   },
-  "1.0.0-alpha.4": {
-    "rrwebVersion": "2.0.0-alpha.4",
+  "1.0.0-alpha.5": {
+    "rrwebVersion": "2.0.0-alpha.5"
+  },
+  "1.0.0-alpha.6": {
+    "rrwebVersion": "2.0.0-alpha.6"
+  },
+  "1.0.0-alpha.7": {
+    "rrwebVersion": "2.0.0-alpha.7",
     "default": true
   }
 }
