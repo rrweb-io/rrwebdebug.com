@@ -1,0 +1,1 @@
+import{v as r}from"./versions.a44210ed.js";function s(){document.getElementById("versions").innerHTML=Object.entries(r).map(([o,e])=>{const{rrwebVersion:t}=e,n="default"in e&&e.default;return`<option value="${o}" ${n?"selected":""} =>${o} (rrweb v${t})</option>`}).join(""),console.log("Welcome to rrwebdebug.com!")}document.addEventListener("DOMContentLoaded",s);
