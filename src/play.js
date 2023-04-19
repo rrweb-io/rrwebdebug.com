@@ -24,6 +24,11 @@ function styleHref(version) {
 }
 
 function playVideo(events, config) {
+  window.events = events; // For debugging
+  const location = new URL(document.location);
+  const canvas = Boolean(location.searchParams.get("canvas"));
+  const autoPlay = Boolean(location.searchParams.get("play"));
+
   const component = new rrwebPlayer({
     target: document.getElementById("player"),
     data: {
@@ -31,8 +36,8 @@ function playVideo(events, config) {
       skipInactive: true,
       showDebug: true,
       showWarning: true,
-      autoPlay: config.autoPlay,
-      UNSAFE_replayCanvas: config.canvas,
+      autoPlay: autoPlay,
+      UNSAFE_replayCanvas: canvas,
       mouseTail: {
         strokeStyle: "yellow",
       },
@@ -49,10 +54,14 @@ function showJSON(json) {
 
   const options = {
     mode: "view",
+    modes: ["code", "view"],
+    onChange: function () {
+      const events = editor.get();
+      playVideo(events);
+    }
   };
 
   const editor = new JSONEditor(container, options, json);
-  window.events = events;
 }
 
 function getGistId(url) {
@@ -69,9 +78,7 @@ async function startPlayer() {
   const location = new URL(document.location);
   const url = location.searchParams.get("url");
   const version = location.searchParams.get("version");
-  const canvas = Boolean(location.searchParams.get("canvas"));
-  const autoPlay = Boolean(location.searchParams.get("play"));
-  let events;
+  let events = [];
   const gistId = getGistId(url);
   const jsonBlobId = getJSONBlobId(url);
   if (gistId) {
@@ -121,11 +128,8 @@ async function startPlayer() {
   const scriptEl = document.createElement("script");
   scriptEl.setAttribute("src", scriptSRC(version));
   scriptEl.addEventListener("load", function () {
-    playVideo(events, {
-      canvas,
-      autoPlay,
-    });
-    showJSON(events);
+    showJSON(events || []);
+    playVideo(events);
   });
 
   document.head.appendChild(scriptEl);
