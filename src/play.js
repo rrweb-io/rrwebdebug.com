@@ -32,6 +32,7 @@ function playVideo(events, config) {
       showDebug: true,
       showWarning: true,
       autoPlay: config.autoPlay,
+      useVirtualDom: config.useVirtualDom,
       UNSAFE_replayCanvas: config.canvas,
       mouseTail: {
         strokeStyle: "yellow",
@@ -71,6 +72,7 @@ async function startPlayer() {
   const version = location.searchParams.get("version");
   const canvas = Boolean(location.searchParams.get("canvas"));
   const autoPlay = Boolean(location.searchParams.get("play"));
+  const useVirtualDom = Boolean(location.searchParams.get("virtual-dom"));
   let events;
   const gistId = getGistId(url);
   const jsonBlobId = getJSONBlobId(url);
@@ -124,6 +126,7 @@ async function startPlayer() {
     playVideo(events, {
       canvas,
       autoPlay,
+      useVirtualDom,
     });
     showJSON(events);
   });
