@@ -1,4 +1,5 @@
 import versionsJson from "./versions.json";
+import populateVersions from "./populate-versions";
 
 function allowedVersion(version) {
   const allVersions = Object.keys(versionsJson);
@@ -15,12 +16,21 @@ function defaultVersion() {
 }
 
 function scriptSRC(version) {
-  if (!allowedVersion(version)) version = defaultVersion();
   return `https://cdn.jsdelivr.net/npm/rrweb-player@${version}/dist/index.js`;
 }
 function styleHref(version) {
-  if (!allowedVersion(version)) version = defaultVersion();
   return `https://cdn.jsdelivr.net/npm/rrweb-player@${version}/dist/style.css`;
+}
+function setupVersionSelector(version) {
+  populateVersions(version);
+  document.getElementById("versions").addEventListener("change", (e) => {
+    const newVersion = e.target.value;
+    // reload page with selected version
+    const location = new URL(document.location);
+    location.searchParams.set("version", newVersion);
+
+    document.location.href = location.href;
+  });
 }
 
 function playVideo(events, config) {
@@ -69,7 +79,8 @@ function getJSONBlobId(url) {
 async function startPlayer() {
   const location = new URL(document.location);
   const url = location.searchParams.get("url");
-  const version = location.searchParams.get("version");
+  let version = location.searchParams.get("version");
+  if (!allowedVersion(version)) version = defaultVersion();
   const canvas = Boolean(location.searchParams.get("canvas"));
   const autoPlay = Boolean(location.searchParams.get("play"));
   const useVirtualDom = Boolean(location.searchParams.get("virtual-dom"));
@@ -130,6 +141,8 @@ async function startPlayer() {
     });
     showJSON(events);
   });
+
+  setupVersionSelector(version);
 
   document.head.appendChild(scriptEl);
   document.querySelector("a.json").setAttribute("href", url);

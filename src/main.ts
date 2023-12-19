@@ -1,18 +1,8 @@
+import { populateVersions } from "./populate-versions";
 import "./style.css";
 
-import versionsJson from "./versions.json";
-
 function onLoad() {
-  document.getElementById("versions")!.innerHTML = Object.entries(versionsJson)
-    .map(([version, config]) => {
-      const { rrwebVersion } = config;
-      const isDefault = "default" in config && config.default;
-
-      return `<option value="${version}" ${
-        isDefault ? "selected" : ""
-      } =>${version} (rrweb v${rrwebVersion})</option>`;
-    })
-    .join("");
+  populateVersions();
 
   console.log("Welcome to rrwebdebug.com!");
 }
