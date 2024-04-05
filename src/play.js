@@ -1,5 +1,6 @@
 import versionsJson from "./versions.json";
 import populateVersions from "./populate-versions";
+import { JSONEditor } from "vanilla-jsoneditor";
 
 function allowedVersion(version) {
   const allVersions = Object.keys(versionsJson);
@@ -58,11 +59,10 @@ function playVideo(events, config) {
 function showJSON(json) {
   const container = document.getElementById("jsoneditor");
 
-  const options = {
-    mode: "view",
-  };
-
-  const editor = new JSONEditor(container, options, json);
+  const editor = new JSONEditor({
+    target: container,
+    props: { content: { json }, mode: "view" },
+  });
   window.events = events;
 }
 
