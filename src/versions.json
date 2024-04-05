@@ -69,7 +69,10 @@
     "rrwebVersion": "2.0.0-alpha.10"
   },
   "2.0.0-alpha.11": {
-    "rrwebVersion": "2.0.0-alpha.11",
+    "rrwebVersion": "2.0.0-alpha.11"
+  },
+  "2.0.0-alpha.12": {
+    "rrwebVersion": "2.0.0-alpha.12",
     "default": true
   }
 }
