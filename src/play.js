@@ -7,6 +7,10 @@ function allowedVersion(version) {
   return allVersions.includes(version);
 }
 
+function isLegacy(version) {
+  return Boolean(versionsJson[version].legacy);
+}
+
 function defaultVersion() {
   const defaultVersion = Object.entries(versionsJson).find(
     ([version, { default: isDefault }]) => {
@@ -16,8 +20,12 @@ function defaultVersion() {
   return defaultVersion?.[0];
 }
 
-function scriptSRC(version) {
-  return `https://cdn.jsdelivr.net/npm/rrweb-player@${version}/dist/index.js`;
+function scriptSRC(version, legacy = false) {
+  if (legacy) {
+    return `https://cdn.jsdelivr.net/npm/rrweb-player@${version}/dist/index.js`;
+  }
+  // return `https://cdn.jsdelivr.net/npm/rrweb-player@${version}/dist/rrweb-player.umd.cjs`; // <= https://github.com/jsdelivr/jsdelivr/issues/18584
+  return `https://unpkg.dev/rrweb-player@${version}/dist/rrweb-player.umd.cjs`;
 }
 function styleHref(version) {
   return `https://cdn.jsdelivr.net/npm/rrweb-player@${version}/dist/style.css`;
@@ -34,8 +42,9 @@ function setupVersionSelector(version) {
   });
 }
 
-function playVideo(events, config) {
-  const component = new rrwebPlayer({
+async function playVideo(events, config) {
+  const Player = window.rrwebPlayer.Player || window.rrwebPlayer; // for legacy version
+  const component = new Player({
     target: document.getElementById("player"),
     data: {
       events,
@@ -81,6 +90,7 @@ async function startPlayer() {
   const url = location.searchParams.get("url");
   let version = location.searchParams.get("version");
   if (!allowedVersion(version)) version = defaultVersion();
+  const legacy = isLegacy(version);
   const canvas = Boolean(location.searchParams.get("canvas"));
   const autoPlay = Boolean(location.searchParams.get("play"));
   const useVirtualDom = Boolean(location.searchParams.get("virtual-dom"));
@@ -132,7 +142,8 @@ async function startPlayer() {
   document.head.appendChild(styleEl);
 
   const scriptEl = document.createElement("script");
-  scriptEl.setAttribute("src", scriptSRC(version));
+  scriptEl.setAttribute("src", scriptSRC(version, legacy));
+  scriptEl.setAttribute("type", "application/javascript");
   scriptEl.addEventListener("load", function () {
     playVideo(events, {
       canvas,
