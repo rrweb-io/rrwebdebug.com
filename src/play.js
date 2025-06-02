@@ -136,9 +136,7 @@ async function startPlayer() {
       events = JSON.parse(storedEvents);
       console.log('Loaded events from sessionStorage:', events.length, 'events');
 
-      // Update the JSON link to show it's local data
-      document.querySelector("a.json").setAttribute("href", "#");
-      document.querySelector("a.json").innerText = "Local data (file upload or paste)";
+      // Update the JSON source display to show it's local data
       document.getElementById("json-source").innerText = "Local data (file upload or paste)";
     } catch (error) {
       console.error('Error loading from sessionStorage:', error);
@@ -186,8 +184,6 @@ async function startPlayer() {
       }
     }
 
-    document.querySelector("a.json").setAttribute("href", url);
-    document.querySelector("a.json").innerText = url;
     document.getElementById("json-source").innerText = url;
   }
 
