@@ -15,7 +15,7 @@ function defaultVersion() {
   const defaultVersion = Object.entries(versionsJson).find(
     ([version, { default: isDefault }]) => {
       if (isDefault) return true;
-    }
+    },
   );
   return defaultVersion?.[0];
 }
@@ -49,9 +49,9 @@ function setupVersionSelector(version) {
     // For local data, make sure we preserve the source parameter
     if (location.searchParams.get("source") === "local") {
       // Verify sessionStorage still has the data before reloading
-      const storedEvents = sessionStorage.getItem('rrweb-events');
+      const storedEvents = sessionStorage.getItem("rrweb-events");
       if (!storedEvents) {
-        alert('Local data was lost. Please go back and reload your events.');
+        alert("Local data was lost. Please go back and reload your events.");
         return;
       }
     }
@@ -92,7 +92,7 @@ function showJSON(json) {
       content: { json },
       mode: "view",
       mainMenuBar: false,
-      navigationBar: false
+      navigationBar: false,
     },
   });
   window.events = json;
@@ -114,7 +114,7 @@ async function startPlayer() {
   const source = location.searchParams.get("source");
   let version = location.searchParams.get("version");
 
-  console.log('Starting player with:', { url, source, version });
+  console.log("Starting player with:", { url, source, version });
 
   if (!allowedVersion(version)) version = defaultVersion();
   const type = versionsJson[version].type;
@@ -123,23 +123,28 @@ async function startPlayer() {
   const useVirtualDom = Boolean(location.searchParams.get("virtual-dom"));
   let events;
 
-  if (source === 'local') {
+  if (source === "local") {
     // Load events from sessionStorage
     try {
-      const storedEvents = sessionStorage.getItem('rrweb-events');
-      console.log('SessionStorage data found:', !!storedEvents);
+      const storedEvents = sessionStorage.getItem("rrweb-events");
+      console.log("SessionStorage data found:", !!storedEvents);
 
       if (!storedEvents) {
-        alert('No events data found. Please go back and select your events.');
+        alert("No events data found. Please go back and select your events.");
         return;
       }
       events = JSON.parse(storedEvents);
-      console.log('Loaded events from sessionStorage:', events.length, 'events');
+      console.log(
+        "Loaded events from sessionStorage:",
+        events.length,
+        "events",
+      );
 
       // Update the JSON source display to show it's local data
-      document.getElementById("json-source").innerText = "Local data (file upload or paste)";
+      document.getElementById("json-source").innerText =
+        "Local data (file upload or paste)";
     } catch (error) {
-      console.error('Error loading from sessionStorage:', error);
+      console.error("Error loading from sessionStorage:", error);
       alert("Error loading local events data: " + error.message);
       return;
     }
@@ -150,7 +155,7 @@ async function startPlayer() {
     if (gistId) {
       try {
         const gistApiRequest = await fetch(
-          `https://api.github.com/gists/${gistId}`
+          `https://api.github.com/gists/${gistId}`,
         );
         const apiResponse = await gistApiRequest.json();
         const files = Object.values(apiResponse.files);
@@ -167,7 +172,7 @@ async function startPlayer() {
     } else if (jsonBlobId) {
       try {
         const jsonBlobApiRequest = await fetch(
-          `https://jsonblob.com/api/v1/get/${jsonBlobId}`
+          `https://jsonblob.com/api/v1/get/${jsonBlobId}`,
         );
         events = await jsonBlobApiRequest.json();
       } catch (error) {
@@ -208,8 +213,8 @@ async function startPlayer() {
   document.head.appendChild(scriptEl);
 }
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', startPlayer);
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", startPlayer);
 } else {
   startPlayer();
 }
