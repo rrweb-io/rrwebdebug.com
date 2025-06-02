@@ -109,6 +109,18 @@
   },
   "2.0.0-alpha.15": {
     "rrwebVersion": "2.0.0-alpha.15",
+    "legacy": true
+  },
+  "2.0.0-alpha.16": {
+    "rrwebVersion": "2.0.0-alpha.16",
+    "legacy": true
+  },
+  "2.0.0-alpha.17": {
+    "rrwebVersion": "2.0.0-alpha.17",
+    "legacy": true
+  },
+  "2.0.0-alpha.18": {
+    "rrwebVersion": "2.0.0-alpha.18",
     "default": true
   }
 }
