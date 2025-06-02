@@ -16,5 +16,9 @@
   },
   "dependencies": {
     "vanilla-jsoneditor": "^0.23.1"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "yarn": ">=1.23.0-20220130.1630"
   }
 }
