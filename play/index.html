@@ -19,6 +19,17 @@
     .main-content {
       height: calc(100vh - 100px);
     }
+
+    /* Ensure JSON editor doesn't push player off screen */
+    #jsoneditor {
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+
+    /* Ensure player takes available space properly */
+    #player {
+      min-height: 400px;
+    }
   </style>
 </head>
 
@@ -28,7 +39,7 @@
     <div class="container-fluid">
       <div class="row w-100 align-items-center">
         <div class="col-lg-8">
-          <h4 class="navbar-brand mb-0 fw-bold">RRWeb Debug Player</h4>
+          <a href="../" class="navbar-brand mb-0 fw-bold text-decoration-none">RRWeb Debug Player</a>
           <small class="text-muted d-block">
             Events: <span id="json-source" class="text-info">loading...</span>
           </small>
@@ -47,7 +58,7 @@
   <div class="container-fluid flex-grow-1 py-3 main-content">
     <div class="row h-100 g-3">
       <!-- Player Panel -->
-      <div class="col-lg-8">
+      <div class="col-lg-9">
         <div class="card h-100 shadow-sm">
           <div class="card-header bg-light">
             <h5 class="card-title mb-0">
@@ -68,7 +79,7 @@
       </div>
 
       <!-- JSON Editor Panel -->
-      <div class="col-lg-4">
+      <div class="col-lg-3">
         <div class="card h-100 shadow-sm">
           <div class="card-header bg-light">
             <h5 class="card-title mb-0">
