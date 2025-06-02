@@ -88,6 +88,7 @@ function getJSONBlobId(url) {
 async function startPlayer() {
   const location = new URL(document.location);
   const url = location.searchParams.get("url");
+  const source = location.searchParams.get("source");
   let version = location.searchParams.get("version");
   if (!allowedVersion(version)) version = defaultVersion();
   const legacy = isLegacy(version);
@@ -95,45 +96,68 @@ async function startPlayer() {
   const autoPlay = Boolean(location.searchParams.get("play"));
   const useVirtualDom = Boolean(location.searchParams.get("virtual-dom"));
   let events;
-  const gistId = getGistId(url);
-  const jsonBlobId = getJSONBlobId(url);
-  if (gistId) {
+
+  if (source === 'local') {
+    // Load events from sessionStorage
     try {
-      const gistApiRequest = await fetch(
-        `https://api.github.com/gists/${gistId}`
-      );
-      const apiResponse = await gistApiRequest.json();
-      const files = Object.values(apiResponse.files);
-      if (files[0].truncated) {
-        const eventsRequest = await fetch(files[0].raw_url);
-        events = await eventsRequest.json();
-      } else {
-        // if js
-        // Function('"use strict";return (' + js.replace(/^\s*(const|let|var)\s\w+\s*=\s*/, '').replace(/;[\s\n]*$/, '') + ')')()
-        events = JSON.parse(files[0].content);
+      const storedEvents = sessionStorage.getItem('rrweb-events');
+      if (!storedEvents) {
+        alert('No events data found. Please go back and select your events.');
+        return;
       }
+      events = JSON.parse(storedEvents);
+
+      // Update the JSON link to show it's local data
+      document.querySelector("a.json").setAttribute("href", "#");
+      document.querySelector("a.json").innerText = "Local data (file upload or paste)";
     } catch (error) {
-      alert("something went wrong, please check the console");
+      alert("Error loading local events data: " + error.message);
       console.error(error);
-    }
-  } else if (jsonBlobId) {
-    try {
-      const jsonBlobApiRequest = await fetch(
-        `https://jsonblob.com/api/v1/get/${jsonBlobId}`
-      );
-      events = await jsonBlobApiRequest.json();
-    } catch (error) {
-      alert("something went wrong, please check the console");
-      console.error(error);
+      return;
     }
   } else {
-    try {
-      const eventsRequest = await fetch(url);
-      events = await eventsRequest.json();
-    } catch (error) {
-      alert("something went wrong, please check the console");
-      console.error(error);
+    // Existing URL-based loading logic
+    const gistId = getGistId(url);
+    const jsonBlobId = getJSONBlobId(url);
+    if (gistId) {
+      try {
+        const gistApiRequest = await fetch(
+          `https://api.github.com/gists/${gistId}`
+        );
+        const apiResponse = await gistApiRequest.json();
+        const files = Object.values(apiResponse.files);
+        if (files[0].truncated) {
+          const eventsRequest = await fetch(files[0].raw_url);
+          events = await eventsRequest.json();
+        } else {
+          events = JSON.parse(files[0].content);
+        }
+      } catch (error) {
+        alert("something went wrong, please check the console");
+        console.error(error);
+      }
+    } else if (jsonBlobId) {
+      try {
+        const jsonBlobApiRequest = await fetch(
+          `https://jsonblob.com/api/v1/get/${jsonBlobId}`
+        );
+        events = await jsonBlobApiRequest.json();
+      } catch (error) {
+        alert("something went wrong, please check the console");
+        console.error(error);
+      }
+    } else {
+      try {
+        const eventsRequest = await fetch(url);
+        events = await eventsRequest.json();
+      } catch (error) {
+        alert("something went wrong, please check the console");
+        console.error(error);
+      }
     }
+
+    document.querySelector("a.json").setAttribute("href", url);
+    document.querySelector("a.json").innerText = url;
   }
 
   const styleEl = document.createElement("link");
@@ -154,10 +178,7 @@ async function startPlayer() {
   });
 
   setupVersionSelector(version);
-
   document.head.appendChild(scriptEl);
-  document.querySelector("a.json").setAttribute("href", url);
-  document.querySelector("a.json").innerText = url;
 }
 
 document.onload = startPlayer();
