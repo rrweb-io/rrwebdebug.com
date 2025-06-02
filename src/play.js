@@ -88,7 +88,12 @@ function showJSON(json) {
 
   const editor = createJSONEditor({
     target: container,
-    props: { content: { json }, mode: "view" },
+    props: {
+      content: { json },
+      mode: "view",
+      mainMenuBar: false,
+      navigationBar: false
+    },
   });
   window.events = json;
 }
@@ -134,6 +139,7 @@ async function startPlayer() {
       // Update the JSON link to show it's local data
       document.querySelector("a.json").setAttribute("href", "#");
       document.querySelector("a.json").innerText = "Local data (file upload or paste)";
+      document.getElementById("json-source").innerText = "Local data (file upload or paste)";
     } catch (error) {
       console.error('Error loading from sessionStorage:', error);
       alert("Error loading local events data: " + error.message);
@@ -182,6 +188,7 @@ async function startPlayer() {
 
     document.querySelector("a.json").setAttribute("href", url);
     document.querySelector("a.json").innerText = url;
+    document.getElementById("json-source").innerText = url;
   }
 
   const styleEl = document.createElement("link");
