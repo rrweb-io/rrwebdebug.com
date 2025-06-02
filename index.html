@@ -147,7 +147,15 @@
     });
 
     // Show the correct input section on page load (handles browser back navigation)
-    document.addEventListener('DOMContentLoaded', showInputSection);
+    // Use pageshow event and setTimeout to ensure browser has restored form state
+    window.addEventListener('pageshow', function () {
+      setTimeout(showInputSection, 0);
+    });
+
+    // Also check on DOMContentLoaded for initial loads
+    document.addEventListener('DOMContentLoaded', function () {
+      setTimeout(showInputSection, 0);
+    });
 
     // Handle form submission
     document.getElementById('eventsForm').addEventListener('submit', async function (e) {
