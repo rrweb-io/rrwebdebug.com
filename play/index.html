@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -12,23 +12,103 @@
       crossorigin="anonymous"
     />
     <script type="module" src="/src/play.js"></script>
-  </head>
-  <body>
-    <p>Events JSON: <a class="json" href="#">loading...</a></p>
-    <p>
-      Version:
-      <select id="versions"></select>
-    </p>
-    <div
-      id="jsoneditor"
-      style="
-        width: 100%;
+    <style>
+      /* Minimal custom CSS - just for layout heights */
+      html,
+      body {
+        height: 100%;
+      }
+
+      .main-content {
+        height: calc(100vh - 100px);
+      }
+
+      /* Ensure JSON editor doesn't push player off screen */
+      #jsoneditor {
+        max-height: 70vh;
+        overflow-y: auto;
+      }
+
+      /* Ensure player takes available space properly */
+      #player {
         min-height: 400px;
-        height: calc(100vh - 656px - 100px);
-      "
-    ></div>
-    <div id="player">
-      <p class="loading">Loading player...</p>
+      }
+    </style>
+  </head>
+
+  <body class="d-flex flex-column">
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-dark bg-dark py-3">
+      <div class="container-fluid">
+        <div class="row w-100 align-items-center">
+          <div class="col-lg-8">
+            <a href="../" class="navbar-brand mb-0 fw-bold text-decoration-none"
+              >RRWeb Debug Player</a
+            >
+            <small class="text-muted d-block">
+              Events: <span id="json-source" class="text-info">loading...</span>
+            </small>
+          </div>
+          <div class="col-lg-4 text-end">
+            <div class="d-flex align-items-center justify-content-end">
+              <label for="versions" class="form-label text-light me-2 mb-0"
+                >Version:</label
+              >
+              <select
+                id="versions"
+                class="form-select form-select-sm"
+                style="width: auto"
+              ></select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container-fluid flex-grow-1 py-3 main-content">
+      <div class="row h-100 g-3">
+        <!-- Player Panel -->
+        <div class="col-lg-9">
+          <div class="card h-100 shadow-sm">
+            <div class="card-header bg-light">
+              <h5 class="card-title mb-0">
+                <i class="bi bi-play-circle me-2"></i>Player
+              </h5>
+            </div>
+            <div class="card-body p-0 position-relative bg-light">
+              <div
+                id="player"
+                class="h-100 d-flex align-items-center justify-content-center"
+              >
+                <div class="loading text-muted">
+                  <div
+                    class="spinner-border spinner-border-sm me-2"
+                    role="status"
+                  >
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                  Loading player...
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- JSON Editor Panel -->
+        <div class="col-lg-3">
+          <div class="card h-100 shadow-sm">
+            <div class="card-header bg-light">
+              <h5 class="card-title mb-0">
+                <i class="bi bi-code-square me-2"></i>Events JSON
+              </h5>
+            </div>
+            <div class="card-body p-0">
+              <div id="jsoneditor" class="h-100"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
