@@ -19,7 +19,7 @@
     "vite": "^7.1.5"
   },
   "dependencies": {
-    "vanilla-jsoneditor": "^3.5.0"
+    "vanilla-jsoneditor": "^3.13.0"
   },
   "engines": {
     "node": ">=20.0.0",
