@@ -236,24 +236,24 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.25.5.tgz#7fc114af5f6563f19f73324b5d5ff36ece0803d1"
   integrity sha512-TXv6YnJ8ZMVdX+SXWVBo/0p8LTcrUYngpWjvm91TMjjBQii7Oz11Lw5lbDV5Y0TzuhSJHwiH4hEtC1I42mMS0g==
 
-"@fortawesome/fontawesome-common-types@6.7.2":
-  version "6.7.2"
-  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-6.7.2.tgz#7123d74b0c1e726794aed1184795dbce12186470"
-  integrity sha512-Zs+YeHUC5fkt7Mg1l6XTniei3k4bwG/yo3iFUtZWd/pMx9g3fdvkSK9E0FOC+++phXOka78uJcYb8JaFkW52Xg==
+"@fortawesome/fontawesome-common-types@7.3.1":
+  version "7.3.1"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-7.3.1.tgz#913fe0c0aed1184390efeec2546d78f9c4c8dc4a"
+  integrity sha512-k0C0sdHmZtAo6dRDtd1Z/qcpyHbL0CKsjV8seMY/21xGhY5Wsv0XRmiI/xEEH4y2c9b1+jvgNs/3EqhV27yUEA==
 
-"@fortawesome/free-regular-svg-icons@^6.6.0":
-  version "6.7.2"
-  resolved "https://registry.yarnpkg.com/@fortawesome/free-regular-svg-icons/-/free-regular-svg-icons-6.7.2.tgz#f1651e55e6651a15589b0569516208f9c65f96db"
-  integrity sha512-7Z/ur0gvCMW8G93dXIQOkQqHo2M5HLhYrRVC0//fakJXxcF1VmMPsxnG6Ee8qEylA8b8Q3peQXWMNZ62lYF28g==
+"@fortawesome/free-regular-svg-icons@^6.6.0 || ^7.0.1":
+  version "7.3.1"
+  resolved "https://registry.yarnpkg.com/@fortawesome/free-regular-svg-icons/-/free-regular-svg-icons-7.3.1.tgz#643bf28ff4a878ee75abbf974a6096bbe3816306"
+  integrity sha512-q1EsmL7Q8DDnkRBUjSvrxbq7c9oVwwVjCn/xa5apKmdp65YSgzUg2y0Ltnd5aDbT6GdAQQdXql5Ha90ArqIReQ==
   dependencies:
-    "@fortawesome/fontawesome-common-types" "6.7.2"
+    "@fortawesome/fontawesome-common-types" "7.3.1"
 
-"@fortawesome/free-solid-svg-icons@^6.6.0":
-  version "6.7.2"
-  resolved "https://registry.yarnpkg.com/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-6.7.2.tgz#fe25883b5eb8464a82918599950d283c465b57f6"
-  integrity sha512-GsBrnOzU8uj0LECDfD5zomZJIjrPhIlWU82AHwa2s40FKH+kcxQaBvBo3Z4TxyZHIyX8XTDxsyA33/Vx9eFuQA==
+"@fortawesome/free-solid-svg-icons@^6.6.0 || ^7.0.1":
+  version "7.3.1"
+  resolved "https://registry.yarnpkg.com/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-7.3.1.tgz#07d38cd0cffd759ae64c78e40a9a928ecf0cb19a"
+  integrity sha512-v0BLa0eqg7ubvVWeNSHVBs8fWH/GJicERZoJaxJ3FE/lj67VSqzoMg9pzfZVOfLMX10y0pGwQAuxoRVVH2patg==
   dependencies:
-    "@fortawesome/fontawesome-common-types" "6.7.2"
+    "@fortawesome/fontawesome-common-types" "7.3.1"
 
 "@jridgewell/gen-mapping@^0.3.5":
   version "0.3.5"
@@ -646,10 +646,10 @@ locate-character@^3.0.0:
   resolved "https://registry.yarnpkg.com/locate-character/-/locate-character-3.0.0.tgz#0305c5b8744f61028ef5d01f444009e00779f974"
   integrity sha512-SW13ws7BjaeJ6p7Q6CO2nchbYEc3X3J6WrmTTDto7yMPqVSZTUyY5Tjbid+Ab8gLnATtygYtiDIJGQRRn2ZOiA==
 
-lodash-es@^4.17.21:
-  version "4.17.21"
-  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
-  integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
+lodash-es@^4.17.23:
+  version "4.18.1"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.18.1.tgz#b962eeb80d9d983a900bf342961fb7418ca10b1d"
+  integrity sha512-J8xewKD/Gk22OZbhpOVSwcs60zhd95ESDwezOFuA3/099925PdHJ7OFHNTGtajL3AlZkykD32HykiMo+BIBI8A==
 
 magic-string@^0.30.11:
   version "0.30.17"
@@ -780,10 +780,10 @@ typescript@^5.8.3:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.8.3.tgz#92f8a3e5e3cf497356f4178c34cd65a7f5e8440e"
   integrity sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ==
 
-vanilla-jsoneditor@^3.5.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/vanilla-jsoneditor/-/vanilla-jsoneditor-3.5.0.tgz#d33a845ba2ad6624ab280059f91af9b599dd46a8"
-  integrity sha512-BLr3AajXQAMQ1cPTW5yT8k3sBQ89b/YMlE5AX1toE36vqPJEAZTj6ZXtD8CeBpNaC1W0DWgZQDI9MzeAPORR1g==
+vanilla-jsoneditor@^3.13.0:
+  version "3.13.0"
+  resolved "https://registry.yarnpkg.com/vanilla-jsoneditor/-/vanilla-jsoneditor-3.13.0.tgz#a66985d247a73705c47b1d6a7220063b6613549b"
+  integrity sha512-u9C+D8Ocgr39Gnsfu7USjilfKssqbDqZehMdE0qbwIFnZFdNwkU4iKeEvJxvYbmlVi/sMLxMTrU14PhtXVyiZg==
   dependencies:
     "@codemirror/autocomplete" "^6.18.1"
     "@codemirror/commands" "^6.7.1"
@@ -793,8 +793,8 @@ vanilla-jsoneditor@^3.5.0:
     "@codemirror/search" "^6.5.6"
     "@codemirror/state" "^6.4.1"
     "@codemirror/view" "^6.34.1"
-    "@fortawesome/free-regular-svg-icons" "^6.6.0"
-    "@fortawesome/free-solid-svg-icons" "^6.6.0"
+    "@fortawesome/free-regular-svg-icons" "^6.6.0 || ^7.0.1"
+    "@fortawesome/free-solid-svg-icons" "^6.6.0 || ^7.0.1"
     "@jsonquerylang/jsonquery" "^3.1.1 || ^4.0.0 || ^5.0.0"
     "@lezer/highlight" "^1.2.1"
     "@replit/codemirror-indentation-markers" "^6.5.3"
@@ -806,7 +806,7 @@ vanilla-jsoneditor@^3.5.0:
     json-source-map "^0.6.1"
     jsonpath-plus "^10.3.0"
     jsonrepair "^3.0.0"
-    lodash-es "^4.17.21"
+    lodash-es "^4.17.23"
     memoize-one "^6.0.0"
     natural-compare-lite "^1.4.0"
     svelte "^5.0.0"
